@@ -1,29 +1,51 @@
 <template>
   <div class="home">
+    <h3 class="text-2xl" >{{counterData.title}}</h3>
     <div class="flex justify-center">
-      <button @click="decreaseCounter" class="btn bg-green-500 active:text-green-500"> -</button>
-      <span class="counter">{{counter}}</span>
+      <button @click="decreaseCounter" class="btn px-3"> -</button>
+      <span class="counter">{{counterData.count}}</span>
       <h1></h1>
-      <button @click="increaseCounter" class="btn"> +</button>
+      <button @click="increaseCounter" class="btn px-3"> +</button>
     </div>
+  </div>
+
+  <div class="grid justify-center mt-2">
+    <h4 class="text-center text-2xl">Edit counter title:</h4>
+    <input v-model="counterData.title" type="text"class="border-2 border-gray-600 rounded-sm">
   </div>
 </template>
 
 
 //composition api
 <script setup>
-import {ref} from 'vue';
+import {ref, reactive} from 'vue';
 
-const counter = ref(0);
+const counter = ref(0),
+  counterTitle = ref('My Counter:')
+
+const counterData = reactive({
+  count: 0,
+  title: 'My Counter'
+})
 
 const increaseCounter = () => {
-  counter.value++;
+  counterData.count++;
 }
+
 const decreaseCounter = () => {
-  if(counter.value > 0){
-    counter.value--;
+  if(counterData.count>0){
+    counterData.count--;
   }
 }
+
+// const increaseCounter = () => {
+//   counterData.value++;
+// }
+// const decreaseCounter = () => {
+//   if(counter.value > 0){
+//     counter.value--;
+//   }
+// }
 
 
 </script>
