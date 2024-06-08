@@ -1,12 +1,16 @@
 <template>
   <div class="home">
+    <h2 class="text-3xl" >{{ counterApp }}</h2>
     <h3 class="text-2xl" >{{counterData.title}}</h3>
     <div class="flex justify-center">
-      <button @click="decreaseCounter" class="btn px-3"> -</button>
+      <button @click="decreaseCounter(2)" class="btn px-3">--</button>
+      <button @click="decreaseCounter(1)" class="btn px-3"> -</button>
       <span class="counter">{{counterData.count}}</span>
       <h1></h1>
-      <button @click="increaseCounter" class="btn px-3"> +</button>
+      <button @click="increaseCounter(1, $event)" class="btn px-3"> +</button>
+      <button @click="increaseCounter(2)" class="btn px-3"> ++</button>
     </div>
+    <p>This counting is {{oddOrEven}}</p>
   </div>
 
   <div class="grid justify-center mt-2">
@@ -18,26 +22,57 @@
 
 //composition api
 <script setup>
-import {ref, reactive} from 'vue';
+import {ref, reactive, computed, watch, onMounted, onBeforeUnmount, onBeforeMount, onUnmounted} from 'vue';
 
-const counter = ref(0),
-  counterTitle = ref('My Counter:')
+const counterApp = 'Amazing counter app'
+
+// const counter = ref(0),
+//   counterTitle = ref('My Counter:')
 
 const counterData = reactive({
   count: 0,
   title: 'My Counter'
 })
 
-const increaseCounter = () => {
-  counterData.count++;
+watch(()=> counterData.count, (newCount) => {
+  if(newCount === 20) {
+    alert("Way to go! You made it to 20!!")
+  }
+})
+
+const oddOrEven = computed (() => {
+  if(counterData.count === 0){
+    return ""
+  }
+  else if(counterData.count % 2){
+    return 'odd'
+  }
+  return 'even'
+})
+
+const increaseCounter = (amount, e) => {
+  counterData.count += amount;
 }
 
-const decreaseCounter = () => {
-  if(counterData.count>0){
-    counterData.count--;
+const decreaseCounter = (amount) => {
+  counterData.count -= amount;
+  if(counterData.count < 0){
+    counterData.count = 0;
   }
 }
 
+onBeforeMount(() => {
+  console.log('onBeforeMount')
+})
+onMounted(() => {
+  console.log('onMounted')
+})
+onBeforeUnmount(() => {
+  console.log('onBeforeUnMount')
+})
+onUnmounted(() => {
+  console.log('onUnmounted');
+})
 // const increaseCounter = () => {
 //   counterData.value++;
 // }
@@ -47,8 +82,36 @@ const decreaseCounter = () => {
 //   }
 // }
 
-
 </script>
+<!--  
+<script>
+export default {
+    data() {
+      return {
+        count: 0
+      }
+  },
+  computed:{
+    myComputetdProperty(){
+      // perform logic based on a data property
+      return 'my result'
+    }
+  },
+  watch:{
+    count(newCount, oldCount){
+      if(newCount == 20) alert('asdfasd')
+    }
+  },
+  mounted(){
+    console.log('mounted')
+  },
+  unmounted(){
+    console.log('unmounted')
+  }
+}
+</script>
+-->
+
 
 //composition api
 <!--
