@@ -15,20 +15,33 @@
 
   <div class="grid justify-center mt-2">
     <h4 class="text-center text-2xl">Edit counter title:</h4>
-    <input v-model="counterData.title" type="text"class="border-2 border-gray-600 rounded-sm">
+    <input v-autofocus v-model="counterData.title" type="text"class="border-2 border-gray-600 rounded-sm">
   </div>
 </template>
 
 
 //composition api
 <script setup>
-import {ref, reactive, computed, watch, onMounted, onBeforeUnmount, onBeforeMount, onUnmounted} from 'vue';
+/*
+  imports
+*/ 
+  import {ref, reactive, computed, watch, onMounted, onBeforeUnmount, onBeforeMount, onUnmounted, onBeforeUpdate, onUpdated} from 'vue';
+  import {vAutofocus} from '@/directives/vAutofocus';
+/*
+  app title
+*/ 
+  const counterApp = 'Amazing counter app'
 
-const counterApp = 'Amazing counter app'
+  onMounted(() => {
+    console.log("Do stuff related to app title")
+  })
 
 // const counter = ref(0),
 //   counterTitle = ref('My Counter:')
 
+/*
+  counter
+*/ 
 const counterData = reactive({
   count: 0,
   title: 'My Counter'
@@ -39,7 +52,7 @@ watch(()=> counterData.count, (newCount) => {
     alert("Way to go! You made it to 20!!")
   }
 })
-
+ 
 const oddOrEven = computed (() => {
   if(counterData.count === 0){
     return ""
@@ -61,6 +74,20 @@ const decreaseCounter = (amount) => {
   }
 }
 
+onMounted(() => {
+    console.log("Do stuff related to app title")
+})
+
+/*
+  directives
+
+  const vAutofocus = {
+    mounted: (el) => {
+      el.focus()
+    }
+  }
+*/
+/* 
 onBeforeMount(() => {
   console.log('onBeforeMount')
 })
@@ -73,6 +100,13 @@ onBeforeUnmount(() => {
 onUnmounted(() => {
   console.log('onUnmounted');
 })
+onBeforeUpdate(() => {
+  console.log('beforeUpdate')
+})
+onUpdated(() => {
+  console.log('Updated')
+})
+*/
 // const increaseCounter = () => {
 //   counterData.value++;
 // }
@@ -83,7 +117,7 @@ onUnmounted(() => {
 // }
 
 </script>
-<!--  
+<!--
 <script>
 export default {
     data() {
@@ -107,6 +141,13 @@ export default {
   },
   unmounted(){
     console.log('unmounted')
+  },
+  directives: {
+    autofocus: {
+      mounted(el){
+        el.focus()
+      }
+    }
   }
 }
 </script>
