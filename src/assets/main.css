@@ -3,11 +3,8 @@
 @tailwind utilities;
 
 @layer components{
-    .btn{
-        @apply bg-green-500 leading-8 active:text-green-500 rounded ring-2 ring-slate-900 bg-slate-300;
-    }
-    .font-s2xl {
-        @apply text-2xl
+    .btnn{
+        @apply p-[5px] border-2 border-gray-800 bg-gray-300 rounded;
     }
     
 }

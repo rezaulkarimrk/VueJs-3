@@ -4,28 +4,13 @@
     <p class="mt-5">display the content of post with ID of {{ $route.params.id }}</p>
 
     <div class="text-[#107d50] font-medium mt-10">
-      <button
-        @click="showPostID"
-        class="p-[5px] border-2 border-gray-800 bg-gray-300 rounded"
-      >
-        Show Post ID
-      </button>
+      <button @click="showPostID" class="btnn">Show Post ID</button>
     </div>
     <div class="text-[#107d50] font-medium mt-1">
-      <button
-        @click="goHome3Second"
-        class="p-[5px] border-2 border-gray-800 bg-gray-300 rounded"
-      >
-        Go Home in 3 Second
-      </button>
+      <button @click="goHome3Second" class="btnn">Go Home in 3 Second</button>
     </div>
     <div class="text-[#107d50] font-medium mt-1">
-      <button
-        @click="goToFirstPost"
-        class="p-[5px] border-2 border-gray-800 bg-gray-300 rounded"
-      >
-        Go to first page
-      </button>
+      <button @click="goToFirstPost" class="btnn">Go to first page</button>
     </div>
     <p class="text-[#107d50] font-medium">
       <RouterLink to="/posts"> &lt; Back</RouterLink>

@@ -1,15 +1,16 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { RouterLink, RouterView } from "vue-router";
+import HelloWorld from "./components/HelloWorld.vue";
 </script>
 
 <template>
   <nav>
-        <RouterLink class="active:text-green-400" to="/">Home</RouterLink>
-        <RouterLink to="/posts">Posts</RouterLink>
-      </nav>
+    <RouterLink class="active:text-green-400" to="/">Home</RouterLink>
+    <RouterLink to="/posts">Posts</RouterLink>
+    <RouterLink to="/modals">Modals</RouterLink>
+  </nav>
 
-  <RouterView/>
+  <RouterView />
 </template>
 
 <style scoped>
@@ -47,6 +48,4 @@ nav a {
 nav a:first-of-type {
   border: 0;
 }
-
-
 </style>
