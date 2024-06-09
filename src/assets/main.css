@@ -4,7 +4,10 @@
 
 @layer components{
     .btn{
-        @apply bg-green-500 leading-8 active:text-green-500 rounded ring-2 ring-slate-900 bg-slate-300
+        @apply bg-green-500 leading-8 active:text-green-500 rounded ring-2 ring-slate-900 bg-slate-300;
+    }
+    .font-s2xl {
+        @apply text-2xl
     }
     
 }
