@@ -3,9 +3,18 @@
     <h1 class="text-2xl">Modals</h1>
     <button @click="showModal = true" class="btnn">Show modal</button>
     <!-- <button @click="myTest" class="btnn">test</button> -->
-    <Modal v-if="showModal">
+    <Modal
+      v-model="showModal"
+      title="My Modal title(via prop)"
+      @hideModal="showModal = false"
+    >
+      <!-- <Modal
+      v-if="showModal"
+      title="My Modal title(via prop)"
+      @hideModal="showModal = false"
+    > -->
       <!-- <template v-slot:title>My New Title</template> -->
-      <template #title>My New Title</template>
+      <!-- <template #title>My New Title</template> -->
       <p>
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
         Ipsum has been the industry's standard dummy text ever since the 1500s, when an
@@ -28,8 +37,8 @@ import { ref } from "vue";
 import Modal from "@/components/Modal.vue";
 
 const showModal = ref(false);
-const testing = ref(false);
 
+// const testing = ref(false);
 // const myTest = () => {
 //   console.log(testing);
 //   if (testing.value) {
