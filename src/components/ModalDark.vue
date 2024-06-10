@@ -2,14 +2,16 @@
   <teleport to=".modals-container">
     <div
       v-if="modelValue"
-      class="modal bg-yellow-100 p-3 z-10 w-full h-full left-0 top-0 absolute"
+      class="modal bg-[#333] p-3 z-10 w-full h-full left-0 top-0 absolute text-white"
     >
       <!-- <h1 class="text-2xl"><slot name="title" /></h1> -->
       <h1 class="text-2xl">{{ title }}</h1>
       <slot />
       <!-- <pre>{{ $slots.title() }}</pre> -->
       <!-- <button @click="handleButtonClick" class="btnn">Hide Modals</button> -->
-      <button @click="$emit('update:modelValue', false)" class="btnn">Hide Modals</button>
+      <button @click="$emit('update:modelValue', false)" class="btnn">
+        Hide Modals RK
+      </button>
     </div>
   </teleport>
 </template>

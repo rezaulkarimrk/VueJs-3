@@ -1,12 +1,19 @@
 <template>
   <div class="modals mt-5 ms-5">
     <h1 class="text-2xl">Modals</h1>
+    <div>
+      <label
+        >Show Dark modals
+        <input v-model="showDarkModals" type="checkbox" />
+      </label>
+    </div>
+    <!-- <pre>{{ showDarkModals }}</pre> -->
     <button @click="showModal = true" class="btnn">Show modal</button>
     <!-- <button @click="myTest" class="btnn">test</button> -->
-    <Modal
+    <component
+      :is="showDarkModals ? ModalDark : Modal"
       v-model="showModal"
       title="My Modal title(via prop)"
-      @hideModal="showModal = false"
     >
       <!-- <Modal
       v-if="showModal"
@@ -25,7 +32,7 @@
         with desktop publishing software like Aldus PageMaker including versions of Lorem
         Ipsum.
       </p>
-    </Modal>
+    </component>
   </div>
 </template>
 
@@ -35,6 +42,9 @@
 */
 import { ref } from "vue";
 import Modal from "@/components/Modal.vue";
+import ModalDark from "@/components/ModalDark.vue";
+
+const showDarkModals = ref(false);
 
 const showModal = ref(false);
 
