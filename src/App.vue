@@ -1,51 +1,31 @@
-<script setup>
-import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "./components/HelloWorld.vue";
-</script>
-
 <template>
-  <nav>
+  <div class="flex justify-end mb-10 me-3">
+    {{ userData.name }} @{{ userData.username }}
+  </div>
+  <nav class="ps-5 flex space-x-5 justify-center">
     <RouterLink class="active:text-green-400" to="/">Home</RouterLink>
     <RouterLink to="/posts">Posts</RouterLink>
     <RouterLink to="/modals">Modals</RouterLink>
   </nav>
 
-  <RouterView />
+  <RouterView :userData="userData" />
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
+<script setup>
+/*
+  imports
+*/
+import { reactive, provide } from "vue";
+// import { RouterLink, RouterView } from "vue-router";
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+/*
+user data
+*/
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
+const userData = reactive({
+  name: "Reazul Karim RK",
+  username: "rezaulkarimRK",
+});
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-</style>
+provide("userDataByProvider", userData);
+</script>

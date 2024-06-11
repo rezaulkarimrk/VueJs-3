@@ -1,16 +1,16 @@
 <template>
-  <div class="home">
+  <div class="home grid justify-center mt-10">
     <h2 ref="appTitleRef" class="text-3xl">{{ counterApp }}</h2>
-    <h3 class="text-2xl">{{ counterData.title }}</h3>
+    <h3 class="text-2xl justify-self-center">{{ counterData.title }}</h3>
     <div class="flex justify-center">
-      <button @click="decreaseCounter(2)" class="btn px-3">--</button>
-      <button @click="decreaseCounter(1)" class="btn px-3">-</button>
-      <span class="counter">{{ counterData.count }}</span>
+      <button @click="decreaseCounter(2)" class="btn px-3 text-3xl">--</button>
+      <button @click="decreaseCounter(1)" class="btn px-3 text-3xl">-</button>
+      <span class="counter text-3xl">{{ counterData.count }}</span>
       <h1></h1>
-      <button @click="increaseCounter(1, $event)" class="btn px-3">+</button>
-      <button @click="increaseCounter(2)" class="btn px-3">++</button>
+      <button @click="increaseCounter(1, $event)" class="btn px-3 text-3xl">+</button>
+      <button @click="increaseCounter(2)" class="btn px-3 text-3xl">++</button>
     </div>
-    <p>This counting is {{ oddOrEven }}</p>
+    <p class="justify-self-center mt-5">This counting is {{ oddOrEven }}</p>
   </div>
 
   <div class="grid justify-center mt-2">
@@ -29,23 +29,14 @@
 /*
   imports
 */
-import {
-  ref,
-  reactive,
-  computed,
-  watch,
-  onMounted,
-  onBeforeUnmount,
-  onBeforeMount,
-  onUnmounted,
-  onBeforeUpdate,
-  onUpdated,
-  nextTick,
-} from "vue";
+
 import { vAutofocus } from "@/directives/vAutofocus";
+import { ref, onMounted } from "vue";
+import { useCounter } from "@/use/useCounter";
+
 /*
-  app title
-*/
+    app title
+    */
 const counterApp = "Amazing counter app";
 
 const appTitleRef = ref(null);
@@ -57,184 +48,5 @@ onMounted(() => {
   console.log("Do stuff related to app title");
 });
 
-// const counter = ref(0),
-//   counterTitle = ref('My Counter:')
-
-/*
-  counter
-*/
-const counterData = reactive({
-  count: 0,
-  title: "My Counter",
-});
-
-watch(
-  () => counterData.count,
-  (newCount) => {
-    if (newCount === 20) {
-      alert("Way to go! You made it to 20!!");
-    }
-  }
-);
-
-const oddOrEven = computed(() => {
-  if (counterData.count === 0) {
-    return "";
-  } else if (counterData.count % 2) {
-    return "odd";
-  }
-  return "even";
-});
-
-const increaseCounter = async (amount, e) => {
-  counterData.count += amount;
-
-  nextTick;
-  await nextTick();
-  console.log("do something when counter has upadated in the dom");
-};
-
-const decreaseCounter = (amount) => {
-  counterData.count -= amount;
-  if (counterData.count < 0) {
-    counterData.count = 0;
-  }
-};
-
-onMounted(() => {
-  console.log("Do stuff related to app title");
-});
-
-/*
-  directives
-
-  const vAutofocus = {
-    mounted: (el) => {
-      el.focus()
-    }
-  }
-*/
-/*
-onBeforeMount(() => {
-  console.log('onBeforeMount')
-})
-onMounted(() => {
-  console.log('onMounted')
-})
-onBeforeUnmount(() => {
-  console.log('onBeforeUnMount')
-})
-onUnmounted(() => {
-  console.log('onUnmounted');
-})
-onBeforeUpdate(() => {
-  console.log('beforeUpdate')
-})
-onUpdated(() => {
-  console.log('Updated')
-})
-*/
-// const increaseCounter = () => {
-//   counterData.value++;
-// }
-// const decreaseCounter = () => {
-//   if(counter.value > 0){
-//     counter.value--;
-//   }
-// }
+const { counterData, oddOrEven, increaseCounter, decreaseCounter } = useCounter();
 </script>
-<!--
-<script>
-export default {
-    data() {
-      return {
-        count: 0
-      }
-  },
-  computed:{
-    myComputetdProperty(){
-      // perform logic based on a data property
-      return 'my result'
-    }
-  },
-  watch:{
-    count(newCount, oldCount){
-      if(newCount == 20) alert('asdfasd')
-    }
-  },
-  mounted(){
-    console.log('mounted')
-  },
-  unmounted(){
-    console.log('unmounted')
-  },
-  directives: {
-    autofocus: {
-      mounted(el){
-        el.focus()
-      }
-    }
-  }
-}
-</script>
--->
-
-//composition api
-<!--
-<script>
-  import {ref} from 'vue'
-
-  export default {
-    setup() {
-      const counter = ref(10)
-
-      const increaseCounter = () => {
-        counter.value++;
-      }
-      const decreaseCounter = () =>{
-        if(counter.value > 0) counter.value--;
-      }
-
-      return{
-        counter,
-        increaseCounter,
-        decreaseCounter
-      }
-    }
-  }
-</script>
--->
-
-<!--
-//option api
-<script>
-  export default {
-    data(){
-      return {
-        counter: 0
-      }
-    },
-    methods: {
-      increaseCounter(){
-        this.counter++;
-      },
-      decreaseCounter(){
-        if(this.counter > 0){
-          this.counter--;
-        }
-      }
-    },
-  }
-</script>
--->
-<style>
-.home {
-  text-align: center;
-  padding: 20px;
-}
-.btn,
-.counter {
-  font-size: 40px;
-  margin: 10px;
-}
-</style>
