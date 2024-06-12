@@ -19,11 +19,11 @@
       ></textarea>
     </div>
     <button
-      @click="increaseCounter(1)"
+      @click="counter.increaseCounter(1)"
       class="rounded-md py-2 px-5 border-2 border-gray-600"
-      :class="{ 'bg-yellow-400 text-pink-400': oddOrEven === 'odd' }"
+      :class="{ 'bg-yellow-400 text-pink-400': counter.oddOrEven === 'odd' }"
     >
-      {{ counterData.count }}
+      {{ counter.count }}
     </button>
   </div>
 </template>
@@ -33,9 +33,9 @@
   imports
 */
 import { ref } from "vue";
-// import {vAutofocus} from "@/directives/vAutofocus"
+// import { useCounter } from "@/use/useCounter";
 import { vAutofocus } from "@/directives/vAutofocus";
-import { useCounter } from "@/use/useCounter";
+import { useCounterStore } from "@/stores/counter";
 
 const posts = ref([
   {
@@ -64,5 +64,6 @@ const posts = ref([
 Counter
 */
 
-const { oddOrEven, counterData, increaseCounter } = useCounter();
+// const { oddOrEven, counterData, increaseCounter } = useCounter();
+const counter = useCounterStore();
 </script>
