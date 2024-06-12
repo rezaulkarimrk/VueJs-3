@@ -11,6 +11,11 @@ import {
   nextTick,
 } from "vue";
 
+const counterData = reactive({
+    count: 0,
+    title: "My Counter",
+    });
+
 
 export function useCounter () {
     
@@ -22,10 +27,7 @@ export function useCounter () {
     /*
     counter
     */
-    const counterData = reactive({
-    count: 0,
-    title: "My Counter",
-    });
+    
 
     watch(
     () => counterData.count,
@@ -63,7 +65,7 @@ export function useCounter () {
     onMounted(() => {
     console.log("Do stuff related to app title");
     });
-    
+
     return {
         counterData,
         oddOrEven,
